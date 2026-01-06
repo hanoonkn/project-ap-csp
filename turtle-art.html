@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turtle Art Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">My Projects</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>🎨 Turtle Art Project</h1>
+
+        <div class="content-box">
+            <h2>What This Project Does</h2>
+            <p>This project makes cool animated art using Python's turtle! It draws circles and triangles that spin around in a circle. The shapes keep changing colors which makes it look really awesome.</p>
+
+            <h2>What It Looks Like</h2>
+            <ul>
+                <li>A small circle in the middle</li>
+                <li>Two bigger circles around it</li>
+                <li>10 triangles that rotate around</li>
+                <li>20 small circles that also rotate</li>
+                <li>Colors change between turquoise, blue, and green</li>
+            </ul>
+
+            <h2>How It Works</h2>
+            <div class="info-box">
+                <h3>Step 1: Setup</h3>
+                <p>First I set up the screen and make it white. I also make the turtle draw really fast.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Step 2: Draw the Circles</h3>
+                <p>The turtle draws three circles - one small one in the middle and two bigger ones around it. I used different colors for each one.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Step 3: Make the Triangles Spin</h3>
+                <p>I made 10 triangles that go in a circle. The turtle moves to each spot and stamps a triangle shape. Then it moves back to the center and goes to the next spot.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Step 4: Make It Animate Forever</h3>
+                <p>I put the triangle and circle drawing part inside a forever loop. This makes them keep redrawing over and over with the colors changing!</p>
+            </div>
+
+            <h2>What I Learned</h2>
+            <ul>
+                <li>How to use turtle.circle() to draw circles</li>
+                <li>How to use turtle.stamp() to place shapes</li>
+                <li>How to make shapes go in a circle using math</li>
+                <li>How to change colors in my code</li>
+                <li>How to make animations with loops</li>
+            </ul>
+
+            <h2>Cool Parts of the Code</h2>
+            <p>The coolest part is how I made the shapes go in a circle. I used this formula:</p>
+            <div class="info-box">
+                <p><strong>angle = (360 / number_of_shapes) * i</strong></p>
+                <p>This splits 360 degrees evenly between all the shapes. So for 10 triangles, each one is 36 degrees apart!</p>
+            </div>
+
+            <h2>If I Could Make It Better</h2>
+            <ol>
+                <li>Add more colors to choose from</li>
+                <li>Let people click to change the speed</li>
+                <li>Make different patterns like stars or flowers</li>
+                <li>Save the art as a picture</li>
+            </ol>
+        </div>
+
+        <a href="index.html" class="back-button">← Back Home</a>
+    </div>
+</body>
+</html>

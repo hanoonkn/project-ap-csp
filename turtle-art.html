@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turtle Art Project</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        #canvas-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        canvas {
+            border: 3px solid #c9b79c;
+            border-radius: 10px;
+            background-color: white;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+        .controls button {
+            margin: 0 10px;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -18,74 +35,114 @@
     </nav>
 
     <div class="container">
-        <h1>🎨 Turtle Art Project</h1>
+        <h1>Turtle Art Project</h1>
 
         <div class="content-box">
-            <h2>What This Project Does</h2>
-            <p>This project makes cool animated art using Python's turtle! It draws circles and triangles that spin around in a circle. The shapes keep changing colors which makes it look really awesome.</p>
+            <p>This project uses Python's turtle graphics to draw animated circles and shapes that rotate and change colors. It creates a mandala pattern with a center circle, outer rings, and rotating shapes that cycle through turquoise, blue, and green colors in an infinite loop.</p>
 
-            <div class="info-box" style="text-align: center; background-color: #e8dcc4; padding: 25px;">
-                <h3 style="margin-top: 0;">🎮 Try It In Your Browser!</h3>
-                <p>Click below to see the turtle art in action - it runs real Python code!</p>
-                <a href="turtle-demo.html" class="button" style="font-size: 18px; padding: 15px 30px;">Play Demo →</a>
+            <div class="controls">
+                <button id="start-btn" class="button">Start Animation</button>
+                <button id="stop-btn" class="button">Stop</button>
+                <button id="clear-btn" class="button">Clear</button>
             </div>
 
-            <h2>What It Looks Like</h2>
-            <ul>
-                <li>A small circle in the middle</li>
-                <li>Two bigger circles around it</li>
-                <li>10 triangles that rotate around</li>
-                <li>20 small circles that also rotate</li>
-                <li>Colors change between turquoise, blue, and green</li>
-            </ul>
-
-            <h2>How It Works</h2>
-            <div class="info-box">
-                <h3>Step 1: Setup</h3>
-                <p>First I set up the screen and make it white. I also make the turtle draw really fast.</p>
+            <div id="canvas-container">
+                <canvas id="canvas" width="500" height="500"></canvas>
             </div>
-
-            <div class="info-box">
-                <h3>Step 2: Draw the Circles</h3>
-                <p>The turtle draws three circles - one small one in the middle and two bigger ones around it. I used different colors for each one.</p>
-            </div>
-
-            <div class="info-box">
-                <h3>Step 3: Make the Triangles Spin</h3>
-                <p>I made 10 triangles that go in a circle. The turtle moves to each spot and stamps a triangle shape. Then it moves back to the center and goes to the next spot.</p>
-            </div>
-
-            <div class="info-box">
-                <h3>Step 4: Make It Animate Forever</h3>
-                <p>I put the triangle and circle drawing part inside a forever loop. This makes them keep redrawing over and over with the colors changing!</p>
-            </div>
-
-            <h2>What I Learned</h2>
-            <ul>
-                <li>How to use turtle.circle() to draw circles</li>
-                <li>How to use turtle.stamp() to place shapes</li>
-                <li>How to make shapes go in a circle using math</li>
-                <li>How to change colors in my code</li>
-                <li>How to make animations with loops</li>
-            </ul>
-
-            <h2>Cool Parts of the Code</h2>
-            <p>The coolest part is how I made the shapes go in a circle. I used this formula:</p>
-            <div class="info-box">
-                <p><strong>angle = (360 / number_of_shapes) * i</strong></p>
-                <p>This splits 360 degrees evenly between all the shapes. So for 10 triangles, each one is 36 degrees apart!</p>
-            </div>
-
-            <h2>If I Could Make It Better</h2>
-            <ol>
-                <li>Add more colors to choose from</li>
-                <li>Let people click to change the speed</li>
-                <li>Make different patterns like stars or flowers</li>
-                <li>Save the art as a picture</li>
-            </ol>
         </div>
 
-        <a href="index.html" class="back-button">← Back Home</a>
+        <a href="index.html" class="back-button">Back Home</a>
     </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const colors = ['turquoise', 'deepskyblue', 'lightseagreen'];
+        let colorIndex = 0;
+        let isDrawing = false;
+        let animationId = null;
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, 500, 500);
+        }
+
+        function drawCircle(x, y, radius, color, fill = false) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, 2 * Math.PI);
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            if (fill) {
+                ctx.fill();
+            } else {
+                ctx.stroke();
+            }
+        }
+
+        function drawShapeCircle(cx, cy, radius, numShapes, shapeSize, color) {
+            const angleStep = (2 * Math.PI) / numShapes;
+            for (let i = 0; i < numShapes; i++) {
+                const angle = angleStep * i;
+                const x = cx + radius * Math.cos(angle);
+                const y = cy + radius * Math.sin(angle);
+                
+                ctx.beginPath();
+                ctx.arc(x, y, shapeSize, 0, 2 * Math.PI);
+                ctx.fillStyle = color;
+                ctx.fill();
+            }
+        }
+
+        function drawPattern() {
+            ctx.clearRect(0, 0, 500, 500);
+            
+            const centerX = 250;
+            const centerY = 250;
+            
+            // Center circle
+            drawCircle(centerX, centerY, 20, 'lightseagreen', true);
+            
+            // Middle circle outline
+            ctx.lineWidth = 10;
+            drawCircle(centerX, centerY, 45, 'gray');
+            
+            // Outer circle outline
+            drawCircle(centerX, centerY, 80, 'gray');
+            
+            // Rotating shapes
+            const color = colors[colorIndex];
+            drawShapeCircle(centerX, centerY, 60, 20, 5, color);
+            
+            colorIndex = (colorIndex + 1) % 3;
+        }
+
+        function animate() {
+            if (isDrawing) {
+                drawPattern();
+                animationId = setTimeout(animate, 500);
+            }
+        }
+
+        document.getElementById('start-btn').addEventListener('click', () => {
+            if (!isDrawing) {
+                isDrawing = true;
+                animate();
+            }
+        });
+
+        document.getElementById('stop-btn').addEventListener('click', () => {
+            isDrawing = false;
+            if (animationId) {
+                clearTimeout(animationId);
+            }
+        });
+
+        document.getElementById('clear-btn').addEventListener('click', () => {
+            isDrawing = false;
+            if (animationId) {
+                clearTimeout(animationId);
+            }
+            clearCanvas();
+        });
+    </script>
 </body>
 </html>

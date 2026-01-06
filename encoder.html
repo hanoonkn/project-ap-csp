@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secret Messages Project</title>
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.12.0/brython.min.js"></script>
 </head>
-<body>
+<body onload="brython()">
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">My Projects</a>
@@ -55,9 +56,9 @@
             <input type="number" id="shift" min="1" max="25" value="3">
 
             <div class="button-row">
-                <button onclick="encode()">🔒 Encode Message</button>
-                <button onclick="decode()">🔓 Decode Message</button>
-                <button onclick="clear()">Clear</button>
+                <button id="encode-btn">🔒 Encode Message</button>
+                <button id="decode-btn">🔓 Decode Message</button>
+                <button id="clear-btn">Clear</button>
             </div>
 
             <label>Your Result:</label>
@@ -113,70 +114,59 @@
         <a href="index.html" class="back-button">← Back Home</a>
     </div>
 
-    <script>
-        function encode() {
-            let message = document.getElementById('message').value;
-            let shift = parseInt(document.getElementById('shift').value) || 3;
-            
-            if (!message) {
-                document.getElementById('result').textContent = 'Please type a message first!';
-                return;
-            }
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.12.0/brython.min.js"></script>
+    <script type="text/python">
+from browser import document
 
-            let result = '';
-            for (let i = 0; i < message.length; i++) {
-                let char = message[i];
-                
-                if (char.match(/[a-z]/i)) {
-                    let code = char.charCodeAt(0);
-                    
-                    if (char === char.toUpperCase()) {
-                        result += String.fromCharCode(((code - 65 + shift) % 26) + 65);
-                    } else {
-                        result += String.fromCharCode(((code - 97 + shift) % 26) + 97);
-                    }
-                } else {
-                    result += char;
-                }
-            }
-            
-            document.getElementById('result').textContent = result;
-        }
+def encode(ev):
+    message = document["message"].value
+    shift = int(document["shift"].value or 3)
+    
+    if not message:
+        document["result"].textContent = 'Please type a message first!'
+        return
+    
+    result = ''
+    for char in message:
+        if char.isalpha():
+            if char.isupper():
+                result += chr((ord(char) - 65 + shift) % 26 + 65)
+            else:
+                result += chr((ord(char) - 97 + shift) % 26 + 97)
+        else:
+            result += char
+    
+    document["result"].textContent = result
 
-        function decode() {
-            let message = document.getElementById('message').value;
-            let shift = parseInt(document.getElementById('shift').value) || 3;
-            
-            if (!message) {
-                document.getElementById('result').textContent = 'Please type a message first!';
-                return;
-            }
+def decode(ev):
+    message = document["message"].value
+    shift = int(document["shift"].value or 3)
+    
+    if not message:
+        document["result"].textContent = 'Please type a message first!'
+        return
+    
+    result = ''
+    for char in message:
+        if char.isalpha():
+            if char.isupper():
+                result += chr((ord(char) - 65 - shift + 26) % 26 + 65)
+            else:
+                result += chr((ord(char) - 97 - shift + 26) % 26 + 97)
+        else:
+            result += char
+    
+    document["result"].textContent = result
 
-            let result = '';
-            for (let i = 0; i < message.length; i++) {
-                let char = message[i];
-                
-                if (char.match(/[a-z]/i)) {
-                    let code = char.charCodeAt(0);
-                    
-                    if (char === char.toUpperCase()) {
-                        result += String.fromCharCode(((code - 65 - shift + 26) % 26) + 65);
-                    } else {
-                        result += String.fromCharCode(((code - 97 - shift + 26) % 26) + 97);
-                    }
-                } else {
-                    result += char;
-                }
-            }
-            
-            document.getElementById('result').textContent = result;
-        }
+def clear_all(ev):
+    document["message"].value = ''
+    document["shift"].value = '3'
+    document["result"].textContent = 'Your secret message will appear here...'
 
-        function clear() {
-            document.getElementById('message').value = '';
-            document.getElementById('shift').value = '3';
-            document.getElementById('result').textContent = 'Your secret message will appear here...';
-        }
+# Bind buttons to Python functions
+document["encode-btn"].bind("click", encode)
+document["decode-btn"].bind("click", decode)
+document["clear-btn"].bind("click", clear_all)
     </script>
 </body>
 </html>

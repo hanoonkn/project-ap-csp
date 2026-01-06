@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Tool Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">My Projects</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>🌐 Network Diagnostic Tool</h1>
+
+        <div class="content-box">
+            <h2>What This Program Does</h2>
+            <p>This is a program that helps test your internet connection. It has buttons that run different tests to see if websites are working and how fast your connection is. It's like the tools that computer technicians use!</p>
+
+            <h2>The Buttons</h2>
+            <div class="buttons-grid">
+                <div class="button-info">
+                    <h3>Ping Button</h3>
+                    <p>Tests if a website is working by sending 4 messages to it and seeing if it responds.</p>
+                </div>
+                <div class="button-info">
+                    <h3>Trace Route</h3>
+                    <p>Shows all the stops your internet takes to get to a website (like following a map).</p>
+                </div>
+                <div class="button-info">
+                    <h3>Status Check</h3>
+                    <p>Quick test to see if a website is up or down right now.</p>
+                </div>
+                <div class="button-info">
+                    <h3>IP Address</h3>
+                    <p>Finds the number address of a website (like finding someone's phone number).</p>
+                </div>
+            </div>
+
+            <h2>How It Works</h2>
+            
+            <div class="info-box">
+                <h3>The Layout</h3>
+                <p>I used Tkinter to make the window. On the left is a big text box that shows the results. On the right is where you type a website and all the buttons.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Typing in Websites</h3>
+                <p>You can type any website like "google.com" in the box. The program automatically removes "http://" and "https://" so you don't have to worry about typing those.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Running the Commands</h3>
+                <p>When you click a button, the program runs a special command in your computer. It's the same commands that work in the command line, but with a nice button interface!</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Saving Results</h3>
+                <p>There's a save button at the bottom. When you click it, you can save all the test results to a text file on your computer!</p>
+            </div>
+
+            <h2>Cool Things I Learned</h2>
+            <ul>
+                <li>How to make windows and buttons with Tkinter</li>
+                <li>How to run computer commands from Python</li>
+                <li>How to make my program work on different computers (Windows, Mac, Linux)</li>
+                <li>How to save files with Python</li>
+                <li>How network testing works</li>
+            </ul>
+
+            <h2>Making It Work on Different Computers</h2>
+            <p>One tricky part was making it work on all computers. Windows uses different commands than Mac or Linux, so I had to check which computer it's running on and use the right commands.</p>
+            
+            <div class="info-box">
+                <p>For example, Windows uses "ping -n 4" but Mac uses "ping -c 4". They do the same thing but the commands are a little different!</p>
+            </div>
+
+            <h2>How to Use It</h2>
+            <ol>
+                <li>Type a website in the input box (like "google.com")</li>
+                <li>Click one of the buttons to run a test</li>
+                <li>Wait for the results to show up in the big text box</li>
+                <li>You can save the results if you want to keep them</li>
+            </ol>
+
+            <h2>What I Could Add</h2>
+            <ol>
+                <li>A list of favorite websites to test quickly</li>
+                <li>A way to test multiple websites at once</li>
+                <li>Graphs showing connection speed over time</li>
+                <li>Automatic testing every few minutes</li>
+                <li>Alerts when a website goes down</li>
+            </ol>
+
+            <h2>Why I Made This</h2>
+            <p>I wanted to make something useful that I could actually use. Sometimes my internet acts weird and I wanted a tool to test it. It was also cool to learn how to make a program with a real window and buttons instead of just typing in the terminal!</p>
+        </div>
+
+        <a href="index.html" class="back-button">← Back Home</a>
+    </div>
+</body>
+</html>

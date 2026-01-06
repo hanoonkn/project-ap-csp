@@ -19,35 +19,14 @@
     </nav>
 
     <div class="container">
-        <h1>🔐 Secret Messages</h1>
+        <h1>Secret Messages Encoder/Decoder</h1>
 
         <div class="content-box">
-            <h2>What This Project Does</h2>
-            <p>This program lets you encode and decode secret messages! It shifts the letters in your message so other people can't read it unless they know the secret. It's called a Caesar Cipher and it's one of the oldest types of secret codes!</p>
-
-            <h2>How It Works</h2>
-            <div class="info-box">
-                <h3>The Shift</h3>
-                <p>Every letter gets moved forward in the alphabet by a certain number. For example, if you shift by 3:</p>
-                <ul>
-                    <li>A becomes D</li>
-                    <li>B becomes E</li>
-                    <li>C becomes F</li>
-                    <li>And so on...</li>
-                </ul>
-            </div>
-
-            <div class="info-box">
-                <h3>Example</h3>
-                <p>If you encode "HELLO" with a shift of 3, it becomes "KHOOR"</p>
-                <p>To decode it, you just shift backwards by 3!</p>
-            </div>
-
-            <h2>Try It Out!</h2>
+            <p>A Python program that encodes and decodes messages using a Caesar Cipher, which shifts each letter in the alphabet by a specified number. The program preserves spaces, punctuation, and numbers while encoding only alphabetic characters, and uses modulo arithmetic to wrap letters around the alphabet boundaries.</p>
         </div>
 
         <div class="demo-box">
-            <h2>Secret Message Encoder/Decoder</h2>
+            <h2>Try It Out</h2>
             
             <label for="message">Type Your Message:</label>
             <input type="text" id="message" placeholder="Enter your message here...">
@@ -56,8 +35,8 @@
             <input type="number" id="shift" min="1" max="25" value="3">
 
             <div class="button-row">
-                <button id="encode-btn">🔒 Encode Message</button>
-                <button id="decode-btn">🔓 Decode Message</button>
+                <button id="encode-btn">Encode Message</button>
+                <button id="decode-btn">Decode Message</button>
                 <button id="clear-btn">Clear</button>
             </div>
 
@@ -65,56 +44,9 @@
             <div class="output" id="result">Your secret message will appear here...</div>
         </div>
 
-        <div class="content-box">
-            <h2>How I Made It</h2>
-            
-            <div class="info-box">
-                <h3>Working With Letters</h3>
-                <p>I had to figure out how to turn letters into numbers and back. In computers, every letter has a number. A is 65, B is 66, and so on. I used that to shift the letters!</p>
-            </div>
-
-            <div class="info-box">
-                <h3>Wrapping Around</h3>
-                <p>The tricky part was making Z go back to A. If you shift Z by 1, it should become A, not some weird symbol. I used math (the % symbol) to make it wrap around!</p>
-            </div>
-
-            <div class="info-box">
-                <h3>Keeping Other Stuff the Same</h3>
-                <p>I made it so spaces, numbers, and punctuation don't change. Only the letters get encoded. This makes it easier to read!</p>
-            </div>
-
-            <h2>What I Learned</h2>
-            <ul>
-                <li>How to work with letters and numbers in code</li>
-                <li>How to use the % symbol to make things wrap around</li>
-                <li>How to check if something is a letter or not</li>
-                <li>How secret codes work!</li>
-                <li>How to go through each letter in a message one at a time</li>
-            </ul>
-
-            <h2>Cool History Fact</h2>
-            <div class="info-box">
-                <p>Julius Caesar used this exact code to send secret messages to his army over 2000 years ago! Of course, it's not very secure anymore because computers can crack it in seconds. But it's still fun to learn about!</p>
-            </div>
-
-            <h2>Ideas to Make It Better</h2>
-            <ol>
-                <li>Add different types of codes (not just shifting)</li>
-                <li>Make a code breaker that guesses the shift number</li>
-                <li>Let you encode entire files</li>
-                <li>Add a way to share encoded messages with friends</li>
-            </ol>
-
-            <h2>Important Note</h2>
-            <div class="info-box">
-                <p><strong>Don't use this for real secrets!</strong> This code is super easy to break. It's just for fun and learning. For real secret messages, you need much more complicated codes!</p>
-            </div>
-        </div>
-
-        <a href="index.html" class="back-button">← Back Home</a>
+        <a href="index.html" class="back-button">Back Home</a>
     </div>
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.12.0/brython.min.js"></script>
     <script type="text/python">
 from browser import document
 
@@ -163,7 +95,6 @@ def clear_all(ev):
     document["shift"].value = '3'
     document["result"].textContent = 'Your secret message will appear here...'
 
-# Bind buttons to Python functions
 document["encode-btn"].bind("click", encode)
 document["decode-btn"].bind("click", decode)
 document["clear-btn"].bind("click", clear_all)

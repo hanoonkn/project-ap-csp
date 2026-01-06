@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Coding Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #16213e;
+            padding: 20px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Main Header */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: #00d4ff;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #e0e0e0;
+        }
+
+        /* Counter */
+        .counter-box {
+            background-color: #0f3460;
+            padding: 15px 30px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        #counter {
+            font-size: 30px;
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        .projects {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h2 {
+            font-size: 32px;
+            text-align: center;
+            color: #00d4ff;
+            margin-bottom: 40px;
+        }
+
+        .project-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .project-box {
+            background-color: #16213e;
+            border-radius: 10px;
+            padding: 30px;
+            width: 280px;
+            border: 3px solid #00d4ff;
+        }
+
+        .project-box:hover {
+            background-color: #1e2a47;
+        }
+
+        .emoji {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .project-box h3 {
+            color: #00d4ff;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .project-box p {
+            color: #e0e0e0;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #00d4ff;
+            color: #16213e;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background-color: #00a8cc;
+        }
+
+        /* About Section */
+        .about {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #16213e;
+            border-radius: 10px;
+            border: 3px solid #00d4ff;
+        }
+
+        .about h2 {
+            margin-top: 0;
+        }
+
+        .about p {
+            color: #e0e0e0;
+            line-height: 1.6;
+            font-size: 18px;
+        }
+
+        .skills {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .skills li {
+            background-color: #0f3460;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #00d4ff;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #16213e;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            border-top: 3px solid #00d4ff;
+        }
+
+        footer p {
+            color: #e0e0e0;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">My Projects</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div id="home" class="header">
+        <h1>My Coding Portfolio</h1>
+        <p class="subtitle">Check out my Python projects!</p>
+        
+        <div class="counter-box">
+            <p>Views: <span id="counter">0</span></p>
+        </div>
+    </div>
+
+    <!-- Projects -->
+    <div id="projects" class="projects">
+        <h2>My Projects</h2>
+        
+        <div class="project-grid">
+            <div class="project-box">
+                <div class="emoji">🎨</div>
+                <h3>Turtle Art</h3>
+                <p>Cool animated circles and shapes that spin around with different colors.</p>
+                <a href="turtle-art.html" class="button">See Project</a>
+            </div>
+
+            <div class="project-box">
+                <div class="emoji">🐛</div>
+                <h3>Bug Game</h3>
+                <p>Click on the bugs before time runs out! Keep track of your score.</p>
+                <a href="bug-game.html" class="button">See Project</a>
+            </div>
+
+            <div class="project-box">
+                <div class="emoji">🌐</div>
+                <h3>Network Tool</h3>
+                <p>Test internet connections and see if websites are working.</p>
+                <a href="network-tool.html" class="button">See Project</a>
+            </div>
+
+            <div class="project-box">
+                <div class="emoji">🔐</div>
+                <h3>Secret Messages</h3>
+                <p>Encode and decode messages with a secret code!</p>
+                <a href="encoder.html" class="button">See Project</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About -->
+    <div id="about" class="about">
+        <h2>About Me</h2>
+        <p>I'm learning how to code in Python and make websites. These are some of the projects I've made in my programming class.</p>
+        
+        <h3 style="color: #00d4ff; margin-top: 30px;">What I Know</h3>
+        <ul class="skills">
+            <li>Python</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Turtle Graphics</li>
+            <li>Making Games</li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>My Coding Portfolio 2026</p>
+        <p>Made with HTML, CSS, and JavaScript</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        let count = 0;
+        
+        function addView() {
+            count = count + 1;
+            document.getElementById('counter').textContent = count;
+        }
+        
+        // Add a view every 2 seconds
+        setInterval(addView, 2000);
+        
+        // Start with first view
+        addView();
+    </script>
+</body>
+</html>

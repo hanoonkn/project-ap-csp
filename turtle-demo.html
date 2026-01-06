@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turtle Art - Play Demo</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        canvas {
+            border: 3px solid #c9b79c;
+            border-radius: 10px;
+            display: block;
+            margin: 20px auto;
+            background-color: white;
+        }
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .controls button {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">My Projects</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="turtle-art.html">Back to Info</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>🎨 Play Turtle Art!</h1>
+
+        <div class="content-box">
+            <p>Watch the turtle draw circles and shapes! This is a simplified version that runs right in your browser using Python!</p>
+            
+            <div class="controls">
+                <button id="start-btn" class="button">Start Drawing</button>
+                <button id="clear-btn" class="button">Clear Canvas</button>
+            </div>
+
+            <canvas id="canvas" width="500" height="500"></canvas>
+
+            <div class="info-box">
+                <h3>How It Works</h3>
+                <p>This uses PyScript to run Python code in your browser! The turtle draws circles and rotates shapes just like in the original project.</p>
+            </div>
+        </div>
+
+        <a href="turtle-art.html" class="back-button">← Back to Project Info</a>
+    </div>
+
+    <script type="py" src="https://pyscript.net/releases/2024.1.1/core.js">
+from pyscript import document
+import js
+import math
+
+canvas = document.getElementById("canvas")
+ctx = canvas.getContext("2d")
+
+colors = ["turquoise", "deepskyblue", "lightseagreen"]
+color_index = 0
+is_drawing = False
+
+def clear_canvas(event):
+    ctx.clearRect(0, 0, 500, 500)
+
+def draw_circle(x, y, radius, color, fill=False):
+    ctx.beginPath()
+    ctx.arc(x, y, radius, 0, 2 * math.pi)
+    ctx.strokeStyle = color
+    ctx.fillStyle = color
+    if fill:
+        ctx.fill()
+    else:
+        ctx.stroke()
+
+def draw_shape_circle(cx, cy, radius, num_shapes, shape_size, color):
+    angle_step = (2 * math.pi) / num_shapes
+    for i in range(num_shapes):
+        angle = angle_step * i
+        x = cx + radius * math.cos(angle)
+        y = cy + radius * math.sin(angle)
+        
+        # Draw small circle at this position
+        ctx.beginPath()
+        ctx.arc(x, y, shape_size, 0, 2 * math.pi)
+        ctx.fillStyle = color
+        ctx.fill()
+
+def draw_pattern():
+    global color_index
+    ctx.clearRect(0, 0, 500, 500)
+    
+    center_x = 250
+    center_y = 250
+    
+    # Draw center circle
+    draw_circle(center_x, center_y, 20, "lightseagreen", True)
+    
+    # Draw middle circle outline
+    ctx.lineWidth = 10
+    draw_circle(center_x, center_y, 45, "azure")
+    
+    # Draw outer circle outline
+    draw_circle(center_x, center_y, 80, "azure")
+    
+    # Draw rotating shapes
+    color = colors[color_index]
+    draw_shape_circle(center_x, center_y, 60, 20, 5, color)
+    
+    color_index = (color_index + 1) % 3
+
+def start_animation(event):
+    global is_drawing
+    if not is_drawing:
+        is_drawing = True
+        animate()
+
+def animate():
+    global is_drawing
+    if is_drawing:
+        draw_pattern()
+        js.setTimeout(animate, 500)
+
+# Bind buttons
+document.getElementById("start-btn").addEventListener("click", start_animation)
+document.getElementById("clear-btn").addEventListener("click", clear_canvas)
+    </script>
+</body>
+</html>
